@@ -1,5 +1,5 @@
 import React from 'react';
-import{ Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -17,12 +17,12 @@ class App extends React.Component {
       currentUser: null
     };
   }
-  
-  unsubscribeFromAuth = null
+
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-      if(userAuth) {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
@@ -36,7 +36,7 @@ class App extends React.Component {
           console.log(this.state);
         });
       } else {
-        this.setState({currentUser: userAuth});
+        this.setState({ currentUser: userAuth });
       }
     });
   }
@@ -46,9 +46,9 @@ class App extends React.Component {
   }
 
   render() {
-    return  (
+    return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route path='/shop' component={ShopPage} />
